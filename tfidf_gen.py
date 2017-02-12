@@ -61,6 +61,6 @@ for doc in tfidf_matrix.todense():
             word = feature_names[word_id]
             final_list[word.encode("utf-8")] = score
             word_id +=1
-    for key, value in sorted(final_list.iteritems(), key=lambda (k,v): (v,k), reverse = True)[0:5]:
+    for key, value in sorted(final_list.iteritems(), key=lambda (k,v): (v,k), reverse = True)[0:10]:
     	print "%s: %s" % (key, value)
     doc_id +=1
