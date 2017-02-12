@@ -17,7 +17,6 @@ from nltk.stem.snowball import SnowballStemmer
 from collections import defaultdict
 
 #path = "/home/imran/PractisePython/tf-idf/20news-bydate/20news-bydate-train/alt.atheism"
-#path = "/home/imran/Semion/SemionTextClassifier/rt-polaritydata/rt-polaritydata"
 path = sys.argv[1]
 stemmer = SnowballStemmer("english")
 
@@ -31,14 +30,13 @@ def tokenize(text):
     tokens = nltk.word_tokenize(text)
     stems = stem_tokens(tokens, stemmer)
     return stems
-    #return tokens
 
 token_dict = defaultdict()
 for subdir, dirs, files in os.walk(path):
     for file in files:
         file_path = subdir + os.path.sep + file
         lowers = io.open(file_path, 'r', encoding='latin-1').read().lower()
-        no_punctuation = lowers.encode('utf-8').translate(string.maketrans("",""), string.punctuation)
+        no_punctuation = lowers.encode('utf-8').translate(None, string.punctuation)
         no_numbers = re.sub(r'\d+', '', no_punctuation)
         token_dict[file] = no_numbers
     print "The total number of files is: %s" % (len(files))  
